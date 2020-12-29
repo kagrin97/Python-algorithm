@@ -1,0 +1,26 @@
+
+1.CSS 선언은 속성 및 값 쌍으로 구성됩니다.
+
+2.font-family속성은 엘레멘트의 글꼴을 정의합니다.
+
+3.font-size 표시되는 텍스트의 크기를 제어합니다. 
+font-size: 14px;
+
+4.font-weight 얇거나 두꺼운 텍스트가 표시되는 방식을 정의합니다. 
+font-weight: bold;   (두꺼운)
+
+5.text-align부모 컨테이너의 왼쪽, 오른쪽 또는 가운데 재산 장소 텍스트입니다. 
+text-align: left;  (center,right)
+
+6.텍스트는 두 가지 색상 속성을 가질 수 있습니다 : color및 background-color. color텍스트 background-color의 색상 을 정의하고 텍스트 뒤의 색상 을 정의합니다.
+background-color: white;
+color: black
+
+7.CSS는 opacity속성으로 요소를 투명하게 만들 수 있습니다 .
+opacity: 0.75;  (1이 최대값)
+
+8.CSS는 background-image속성 을 사용하여 요소의 배경을 이미지로 설정할 수도 있습니다.
+background-image: url("https://content.codecademy.com/courses/freelance-1/unit-2/soccer.jpeg");
+
+9.!important은 무시하기가 매우 어렵 기 때문에 플래그는, 그러나 그것은 거의 사용해서는 안됩니다, 어떤 스타일보다 우선합니다.
+color: #FFF !important;
