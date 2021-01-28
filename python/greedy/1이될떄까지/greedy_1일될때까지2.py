@@ -6,7 +6,7 @@
 n, k = map(int, input().split())
 result = 0
 
-while Ture:
+while True:
     target = (n // k) * k # n이 k의 배수가 되는 수 구하기
     result += (n - target) # n이 k의 배수가 된 수를 뺀 값 즉 횟수를 저장
     n = target # n에 k의 배수가된 n을 저장
