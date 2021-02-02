@@ -1,21 +1,12 @@
 n = int(input())
 
-ugly = [0] * n
-ugly[0] = 1
+dp = []
 
-i2 = i3 = i5 = 0
-next2, next3, next5 = 2, 3, 5
-
+for i in range(n):
+    dp.append(list(map(int, input().split())))
 for i in range(1, n):
-    ugly[i] = min(next2, next3, next5)
-    if ugly[i] == next2:
-        i2 += 1
-        next2 = ugly[i2] * 2
-    if ugly[i] == next3:
-        i3 += 1
-        next2 = ugly[i3] * 3
-    if ugly[i] == next5:
-        i5 += 1
-        next2 = ugly[i5] * 2
-    
-print(ugly[n - 1])
+    dp[i][0] = min(dp[i-1][1], dp[i-1][2]) + dp[i][0]
+    dp[i][1] = min(dp[i-1][0], dp[i-1][2]) + dp[i][1]
+    dp[i][2] = min(dp[i-1][1], dp[i-1][0]) + dp[i][2]
+
+print(min(dp[n-1][0], dp[n-1][1], dp[n-1][2]))
