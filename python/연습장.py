@@ -1,12 +1,19 @@
-n = int(input())
+import sys
 
-dp = []
+n = int(sys.stdin.readline())
 
+array = [0,0,0]
 for i in range(n):
-    dp.append(list(map(int, input().split())))
-for i in range(1, n):
-    dp[i][0] = min(dp[i-1][1], dp[i-1][2]) + dp[i][0]
-    dp[i][1] = min(dp[i-1][0], dp[i-1][2]) + dp[i][1]
-    dp[i][2] = min(dp[i-1][1], dp[i-1][0]) + dp[i][2]
+    array.append(int(sys.stdin.readline()))
 
-print(min(dp[n-1][0], dp[n-1][1], dp[n-1][2]))
+table = [0 for _ in range(len(array))]
+for i in range(3, n+3):
+    table[i] = max(table[i-1], table[i-2] + array[i], 
+    table[i-3] + array[i-1] + array[i])
+
+
+print(table[n+2])
+
+
+
+
