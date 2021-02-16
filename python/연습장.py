@@ -1,13 +1,17 @@
-def solution(n):
+def solution(s, n):
     answer = ''
 
-    while n >= 1:
-        n, rest = divmod(n, 3)
-        answer += str(rest)
-
-    answer = int(answer, 3)
-
+    for i in range(len(s)):
+        if s[i] == " ":
+            answer += " "
+        elif ord(s[i]) == 90 or ord(s[i]) == 122:
+            answer += chr(ord(s[i]) - 26 + n)
+        elif 48 < ord(s[i]) < 122: 
+             answer += chr(ord(s[i]) + n)
     return answer
 
-s = 125
-print(solution(s))
+
+
+a = "a B z"
+b = 4	
+print(solution(a, b))
