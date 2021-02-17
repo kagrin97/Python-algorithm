@@ -1,17 +1,15 @@
-def solution(s, n):
+def solution(num):
     answer = ''
 
-    for i in range(len(s)):
-        if s[i] == " ":
-            answer += " "
-        elif ord(s[i]) == 90 or ord(s[i]) == 122:
-            answer += chr(ord(s[i]) - 26 + n)
-        elif 48 < ord(s[i]) < 122: 
-             answer += chr(ord(s[i]) + n)
-    return answer
+    if num % 2 == 1:
+        answer += "Odd"
+    else:
+        answer += "Even"
+    return answer 
+
+        
+        
+n = 6
+print(solution(n))
 
 
-
-a = "a B z"
-b = 4	
-print(solution(a, b))
