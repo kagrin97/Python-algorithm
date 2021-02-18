@@ -1,15 +1,15 @@
-def solution(num):
-    answer = ''
+a, b = map(int, input().strip().split(' '))
+s = ""
+for i in range(a*b):
+    s += "*"
 
-    if num % 2 == 1:
-        answer += "Odd"
-    else:
-        answer += "Even"
-    return answer 
+    
+for i in range(b):
+    print()
+    for j in range(a):
+        print(s[j], end="")
 
-        
-        
-n = 6
-print(solution(n))
+
+
 
 
