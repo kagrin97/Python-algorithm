@@ -1,16 +1,17 @@
-import math
-def solution(w, h):
-    return w*h - (w+h - math.gcd(w,h))
+def solution(n):
+    answer = ''
+    graph = ['1', '2', '4']
+
+    for i in range(n):
+        
+
+    return answer
 
     
 w = 8
-h = 12	
-print(solution(w,h))
+	
+print(solution(w))
 
-''' 
-w와 h의 최대 공약수는 4이다
-w+h - 최대공약수, 를하면 지나가는 사각형의 수를 알수있다
-'''
 
 
 
