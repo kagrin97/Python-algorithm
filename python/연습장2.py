@@ -1,6 +1,6 @@
-s =""
-
-s1 = '2'
-s2 = "3"
-s += s1+s2
-print(s)
+def s(a, b):
+    if a in b:
+        return "True"
+a = 3
+b = [3,5,6]
+print(s(a,b))

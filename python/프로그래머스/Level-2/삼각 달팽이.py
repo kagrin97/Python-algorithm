@@ -12,23 +12,29 @@ def solution(n):
                 # down
             elif i % 3 == 1:
                 y += 1
-                #right
+                # right
             elif i % 3 == 2:
                 x -= 1
                 y -= 1
-
+                # left_up 
             graph[x][y] = num
             num += 1
-    
+            # 실질적인 값 넣기
     for i in graph:
         for j in i:
             if j != 0:
                 answer.append(j)
-           
+           # 첫줄부터 확인 하면서 0이아니면 리스트 삽입
     return answer
 
 n = 5
 print(solution(n))
+
+'''
+if i % 3 == 0 때문에 착각하기 쉬운데 if i % 3 == 0을 쓰는 이유는
+단순히 3번을 반복하기 위해서이다 아래,오른,왼위(크게 의미가 없다)
+반복문을 돌 때마다 i값이 늘면서 2번째 for문은 1씩 덜 반복한다
+'''
 
 
 
