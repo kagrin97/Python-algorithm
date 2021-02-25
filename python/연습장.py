@@ -1,27 +1,31 @@
-def solution(numbers):
-    
-    num = list(map(str, numbers))
-    num.sort(key = lambda x : x * 3, reverse = True)
-    
-    return str(int("".join(num)))
+def solution(name):
+    change = [min(ord(i) - ord('A'), ord('Z') - ord(i) + 1) for i in name]
+    idx = 0
+    answer = 0
 
-n = [6, 10, 2]
+    while True:
+        answer += change[idx]
+        change[idx] = 0
+        if sum(change) == 0:
+            return answer
+        
+        left, right = 1, 1
+        while change[idx - left] == 0:
+            left += 1
+        while change[idx + right] == 0:
+            right += 1
+        
+        if left < right:
+            answer += left
+        else:
+            answer += right
+        if left < right
 
-print(solution(n))
+    return change
 
-'''
-3 ----> 3 3 3
-31  -->  3 1 3 / 1 3 1
-310 -> 3 1 0 / 3 1 0 3 1 0
 
-3번씩 써서 늘리는 이유는 문제 조건에서 
-입력되는 숫자의 최대 크기가 1000미만이라 제시했기 때문이다.
-따라서 입력되는 숫자의 최소길이는 1자리 최대길이는 3자리 일것이고, 
-1자리 숫자를 3자리로 불려줌으로써 문자형태의 숫자를 대소비교한다.
 
-1자리 수를 최대로 늘리면서 (333 같이) 수를 극한으로 비교하기
-위해서이다 위 방법대로하면 333, 313, 310 순이다
 
-이래도 반례가 존재하는데 '0'0'0' 일경우 그냥 join하면 000이라는
-수가 나오기 때문에 int로 바꾸고 다시 str로 바꾼다
-'''
+
+orders = "JEROEN"
+print(solution(orders))
