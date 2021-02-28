@@ -1,6 +1,8 @@
-def s(a, b):
-    if a in b:
-        return "True"
-a = 3
-b = [3,5,6]
-print(s(a,b))
+def solution(phone_book):
+
+    phone_book.sort()
+
+    return phone_book
+
+phone_book = ["12","123","1235","567","88"]
+print(solution(phone_book))
