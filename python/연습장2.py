@@ -1,7 +1,5 @@
-s = "12345678"
+from math import gcd
 
-for i in s:
-    if i == '4':
-        s[i] == 
+s = [2,6,8,14]	
 
-print(s)
+print(gcd(6, 10))
