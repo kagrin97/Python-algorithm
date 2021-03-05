@@ -1,5 +1,4 @@
-from math import gcd
+s = "baabaa"
 
-s = [2,6,8,14]	
-
-print(gcd(6, 10))
+s = s.replace(s[1],"") 
+print(s)
