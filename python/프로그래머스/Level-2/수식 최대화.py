@@ -36,7 +36,7 @@ def solution(expression):
                         break
                 else:
                     idx += 1 # op가 연사자가 아닌 숫자라면 인덱스 늘려줌
-            if flag: # 탈출계획을 들으면 탈출
+            if flag: # 탈출계획을 들으면 탈출후 다른 연산자 조합으로 다시 시작
                 break
     return answer
 

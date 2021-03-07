@@ -1,4 +1,7 @@
-s = "baabaa"
+from copy import deepcopy
 
-s = s.replace(s[1],"") 
-print(s)
+a = [2, 3, 3, 6, 1, 3, 4]
+
+s = deepcopy(a)
+s[0] = 10
+print(a, s)
