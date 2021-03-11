@@ -5,7 +5,7 @@ class G:
 
 def bomb():
     for i, j in reversed(sorted(G.pending)):
-        print(i,j)
+        # 인덱스값이 엉망이 되지 않도록 위에서부터 제거 (밑에서 반대로 넣었으니 또반대면 위에서 시작함)
         G.board[i].pop(j)
         G.bombed += 1
     G.pending = set()
@@ -29,6 +29,7 @@ def solution(m, n, board):
                 traverse(i, j)
         if not G.pending:
             break
+        # 제거할 값이 없으면 종료
         bomb()
 
     return G.bombed
