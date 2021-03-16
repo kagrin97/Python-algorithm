@@ -1,22 +1,49 @@
-ID = dict() # ID값과 이름을 키와 값으로 저장함
-def solution(record):
+from datetime import datetime, timedelta
+def solution(m, musicinfos):
+    m = m.replace('A#','H')
+    m = m.replace('C#','I')
+    m = m.replace('D#','J')
+    m = m.replace('F#','K')
+    m = m.replace('G#','L')
+    m = m.replace('E#','Q')
     answer = []
-    tmp = [] # 임시로 ID와 text를 저장하는 곳
-    for e in record:
-        data = e.split(" ") # 공백을 기준으로 행위, id, 닉네임을 따로 저장
-        if 'L' in data[0]: 
-            tmp.append([data[1], "님이 나갔습니다."])          
-        elif 'E' in data[0]:
-            tmp.append([data[1], "님이 들어왔습니다."])
-            ID[data[1]] = data[2] # 들어갈때 id와 이름을 저장
-        elif 'C' in data[0]:
-            ID[data[1]] = data[2] # 해당 id값을 모두 새로 바꿔줌
+    mu_list = []
+    max_time = 0
+    for i in musicinfos:
+        mu_info = i.split(',')
+        for _ in range(1):
+            s_t = mu_info[0].split(':')
+            e_t = mu_info[1].split(':')
+            time = 60 * (int(e_t[0])-int(s_t[0])) + (int(e_t[1])-int(s_t[1]))
+            print(time)
+            melody = []
+            one_str = mu_info[3]
+            one_str = one_str.replace('A#','H')
+            one_str = one_str.replace('C#','I')
+            one_str = one_str.replace('D#','J')
+            one_str = one_str.replace('F#','K')
+            one_str = one_str.replace('G#','L')
+            one_str = one_str.replace('E#','Q')                       
+            while len(melody) < time:
+                for j in one_str:
+                    if len(melody) == time:
+                        break
+                    else:
+                        melody.append(j)
+            
+            if "".join(list(m)) in "".join(melody):
+                mu_list.append([mu_info[2],time])
+                max_time = max(max_time, time)
 
-    for t in tmp:
-        answer.append(ID[t[0]]+t[1]) 
-        # 딕셔너리에서 id값으로 이름을 불러오고 t로 text를 합쳐줌
-    return answer
+    if not mu_list:
+        return '(None)'
 
-record = ["Enter uid1234 Muzi", "Enter uid4567 Prodo",
-"Leave uid1234","Enter uid1234 Prodo","Change uid4567 Ryan"]
-print(solution(record))
+    for n, t in mu_list:
+        if max_time == t:
+            answer.append(n)
+
+
+    return answer[0]
+m = "CDEFGAC"
+musicinfos = ["12:00,13:06,HELLO,CDEFGA"]
+print(solution(m, musicinfos))
