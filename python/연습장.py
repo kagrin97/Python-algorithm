@@ -1,13 +1,26 @@
-import re 
-def solution(files):
-    
-    f_split = [re.split("([0-9]+)", f) for f in files]
-            
-    f_sort = sorted(f_split, key = lambda x: (x[0].lower(), int(x[1])))
+import heapq
 
-    return ["".join(f) for f in f_sort]
+def solution(n, works):
+    answer = 0
+    heap=[]
 
+    for work in works:
+        heapq.heappush(heap, (-work, work))
 
+    while True:
+        if n==0:
+            break
+        work=heapq.heappop(heap)[1]-1
+        heapq.heappush(heap, (-work, work))
+        n-=1    #시간 감소
 
-files =  ["img12.png", "img10.png", "img02.png", "img1.png", "IMG01.GIF", "img2.JPG"]
-print(solution(files))
+    for h in heap:
+        if h[1] < 0:
+            continue
+        answer+=h[1]**2
+
+    return answer
+
+n = 4
+work = [4, 3, 3]
+print(solution(n, work))
