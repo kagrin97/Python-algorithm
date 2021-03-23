@@ -1,3 +1,4 @@
-s = -14
+s = 3
 
-print(s**2)
+for i in range(s):
+    print(i)
