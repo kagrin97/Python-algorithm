@@ -11,4 +11,3 @@ def solution(routes):
 
 routes = [[-20,15], [-14,-5], [-18,-13], [-5,-3]]
 print(solution(routes))
-
