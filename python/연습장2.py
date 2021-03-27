@@ -1,7 +1,8 @@
-import heapq
+graph = [[0 for _ in range(3)] for _ in range(3)]
+graph[2][2] = 1
+print(graph)
 
-heap = [-10, -110, 20,-300]
+graph = [[0] * 3] * 3
+graph[2][2] = 1
+print(graph)
 
-heapq.heapify(heap)
-
-print(heap)
