@@ -31,7 +31,7 @@ def solution(key, lock):
         rotated_key = rotate90(rotated_key) # 오른쪽으로 돌려줌
         for x in range(1, M+N):
             for y in range(1, M+N): # m+n은 키[0][0]이 자물쇠[-1][-1]이 만나는 지점
-                attach(x, y, M, rotated_key, board)
+                attach(x, y, M, rotated_key, board) # 키를 board에 [1][1]부터 찍는다는 느낌으로 
                 if(check(board, M, N)): 
                     return True # 키가 다들어갔기때문에 성공
                 detach(x, y, M, rotated_key, board) # 키를 빼줌
@@ -42,4 +42,8 @@ key = [[0, 0, 0], [1, 0, 0], [0, 1, 1]]
 lock = [[1, 1, 1], [1, 1, 0], [1, 0, 1]]
 print(solution(key, lock))
 
-
+'''
+이 문제에서 attack는 board에 [1][1]부터 키를 넣어주면서 해당 값들에 1씩을 더해준다
+어차피 자물쇠 부분에 0인지 아닌지만 알면 되기때문에 2나 3이 되어도 상관이없다
+키를 돌려주는 부분인 list(zip(*arr[::-1]))은 완전히 이해는 되지 않는다
+'''

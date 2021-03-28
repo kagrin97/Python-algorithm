@@ -1,8 +1,3 @@
-graph = [[0 for _ in range(3)] for _ in range(3)]
-graph[2][2] = 1
-print(graph)
+s = [[1,2,3],[4,5,6],[7,8,9]]
 
-graph = [[0] * 3] * 3
-graph[2][2] = 1
-print(graph)
-
+print(s[::-1])
