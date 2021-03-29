@@ -14,7 +14,7 @@ def shopping(gems):
             else:
                 gem_dict[gems[end]] += 1 # 해당 보석 갯수 추가
         else:
-            if end - start < result[1] - result[0]: # 범위가 전 범위보다 작을경우
+            if end - start < result[1] - result[0]: # 범위가 전에 구한 범위보다 작을경우
                 result = (start+1, end+1) # 갱신(dic은 인덱스가 0부터 시작해서 +1해줌)
             if gem_dict[gems[start]] == 1: # start위치의 보석 개수가 1일경우 없애줌
                 del gem_dict[gems[start]]
