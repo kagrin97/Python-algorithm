@@ -27,7 +27,7 @@ def racing(n, x, y, board, cost, direction):
 def solution(board):
     n = len(board)
     cost = [[-1] * n for _ in range(n)] # 가격을 넣을 2차배열
-    racing(n, 0, 0, board, cost, 0) # 최대 벼열의크기, x, y, board, cost, 방향
+    racing(n, 0, 0, board, cost, 0) # 최대 배열의크기, x, y, board, cost, 방향
     return cost[n-1][n-1]
 
 board = [[0,0,0],[0,0,0],[0,0,0]]
