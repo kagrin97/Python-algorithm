@@ -25,8 +25,8 @@ def solution(s):
         result = ""
     return min(length)
         
-n = "aaabbacc"
-print(solution(n))
+s = "aaabbacc"
+print(solution(s))
 
 '''
 이 문제는 자를수있는 최소 단위가 s의 절반 단위 인것부터 눈치채야 한다

@@ -45,3 +45,6 @@ def solution(p):
         # 값을 둘이 더 해줌 
 
     return answer
+
+p = "()))((()"
+print(solution(p))

@@ -1,15 +1,9 @@
-def solution(n):
-    answer = ''
-    graph = ['1', '2', '4']
-
-    for i in range(n):
-        
-
-    return answer
+import math
+def solution(w, h):
+    return w*h - (w+h - math.gcd(w,h))
 
     
 w = 8
-	
 print(solution(w))
 
 

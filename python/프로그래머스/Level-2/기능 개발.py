@@ -20,9 +20,9 @@ def solution(p, s):
     answer.append(count) # 마지막 항목을 저장하기 위함
     return answer
 
-p = [93, 30, 55]	
-l = [1, 30, 5]
-print(solution(p,l))
+progresses = [93, 30, 55]	
+speeds = [1, 30, 5]
+print(solution(progresses, speeds))
 
 
 

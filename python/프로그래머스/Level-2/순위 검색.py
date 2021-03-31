@@ -32,6 +32,7 @@ def solution(infos, queries):
         
         if tmp_q in info_dict: # query값이 info_dict에 존재한다면
             scores = info_dict[tmp_q] # 해당 점수들을 불러옴
+            print(scores)
             if len(scores) > 0:
                 start, end = 0, len(scores) # 이분탐색 준비
                 while end > start:

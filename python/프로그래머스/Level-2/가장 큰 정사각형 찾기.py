@@ -7,7 +7,7 @@ def solution(board):
         for j in range(col):
             if i == 0 or j == 0:
                 continue
-            # 0이 존재할 경우 -1이 될수 있으므로 계산 x
+            # 맨 첫번쨰 값을 실행 시킬 필요는 없다
             if board[i][j] != 0:
                 board[i][j] = min(board[i-1][j-1], board[i-1][j], board[i][j-1]) + 1
                 # 현재 값이 0이 아니라면 왼쪽,왼대각석,위 3중 가장 작을값에 1을 더한값을 넣는다
