@@ -5,16 +5,3 @@ for i in s:
     num = num + (i**2)
 
 print(num % 10)
-
-
-
-
-    
-
-
-
-    
-
-
-
-
