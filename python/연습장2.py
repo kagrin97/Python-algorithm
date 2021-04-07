@@ -1,43 +1,47 @@
-def find(x, y):
-    global result
-    for i in range(19):
-        num = 0
-        for j in range(4):
-            try:
-                nx = x + tetromino[i][j][0] # x
-                ny = y + tetromino[i][j][1] # y
-                num += graph[nx][ny]
-            except:
-                continue
-        result = max(result, num)
-def solve():
-    for i in range(n):
-        for j in range(m):
-            find(i, j)
+from collections import deque
+N = int(input()) 
+K = int(input()) 
+board_array = [[1]*(N+2)] + [[1]+[0]*N+[1] for _ in range(N)] + [[1]*(N+2)]
+# 1(벽)으로 둘러싸인 n*n 배열을 만들기위함
+for i in range(K):
+    a, b = map(int, input().split()) 
+    board_array[a][b] = 2 # board의 2는  사과의 위치
 
-n, m = map(int, input().split())
-graph = [list(map(int, input().split())) for _ in range(n)]
-result = 0
-tetromino = [
-    [(0,0), (0,1), (1,0), (1,1)], # ㅁ
-    [(0,0), (0,1), (0,2), (0,3)], # ㅡ
-    [(0,0), (1,0), (2,0), (3,0)], # ㅣ
-    [(0,0), (0,1), (0,2), (1,0)], 
-    [(1,0), (1,1), (1,2), (0,2)],
-    [(0,0), (1,0), (1,1), (1,2)], # ㄴ
-    [(0,0), (0,1), (0,2), (1,2)], # ㄱ
-    [(0,0), (1,0), (2,0), (2,1)],
-    [(2,0), (2,1), (1,1), (0,1)],
-    [(0,0), (0,1), (1,0), (2,0)], 
-    [(0,0), (0,1), (1,1), (2,1)],
-    [(0,0), (0,1), (0,2), (1,1)], # ㅜ
-    [(1,0), (1,1), (1,2), (0,1)], # ㅗ
-    [(0,0), (1,0), (2,0), (1,1)], # ㅏ
-    [(1,0), (0,1), (1,1), (2,1)], # ㅓ
-    [(1,0), (2,0), (0,1), (1,1)],
-    [(0,0), (1,0), (1,1), (2,1)],
-    [(1,0), (0,1), (1,1), (0,2)],
-    [(0,0), (0,1), (1,1), (1,2)]
-]
-solve()
-print(result)
+L = int(input())
+L_array = list(map(lambda x:[int(x[0]), x[1]], [input().split() for _ in range(L)]))
+# 뱀의 방향 정보 저장및 정렬
+
+time = 0
+x, y = 1, 1
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+direction = {0:(-1,0), 1:(0,1), 2:(1,0), 3:(0,-1)} ## 0:북 1:동 2:남 3:서
+d = 1 
+snake_array = deque([[1,1]]) # 뱀의 몸을 표현할 큐
+board_array[1][1] = 3 # 뱀의 몸은 3으로 표현
+
+while True:
+    x, y = snake_array.popleft()
+    nx = x + dx[d]
+    ny = y + dy[d]
+    if board_array[nx][ny] == 2:
+        board_array[nx][ny] = 3
+        snake_array.append([nx, ny])
+        time += 1
+    elif board_array[nx][ny] == 0:
+        board_array[nx][ny] = 3
+        snake_array.append([nx, ny])
+        board_array[x][y] = 0
+        time += 1
+    else:
+        time += 1
+        break
+    if len(L_array) != 0:
+        if L_array[0][0] == time:
+            if L_array[0][1] == 'L':
+                d = (d-1) % 4
+            else:
+                d = (d+1) % 4
+            del L_array[0]
+
+print(time)
