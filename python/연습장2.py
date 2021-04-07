@@ -21,7 +21,7 @@ snake_array = deque([[1,1]]) # 뱀의 몸을 표현할 큐
 board_array[1][1] = 3 # 뱀의 몸은 3으로 표현
 
 while True:
-    x, y = snake_array.popleft()
+    x, y = snake_array[0]
     nx = x + dx[d]
     ny = y + dy[d]
     if board_array[nx][ny] == 2:
@@ -31,6 +31,7 @@ while True:
     elif board_array[nx][ny] == 0:
         board_array[nx][ny] = 3
         snake_array.append([nx, ny])
+        snake_array.popleft()
         board_array[x][y] = 0
         time += 1
     else:

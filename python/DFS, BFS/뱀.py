@@ -13,7 +13,7 @@ L_array = list(map(lambda x:[int(x[0]), x[1]], [input().split() for _ in range(L
 
 time = 0
 x, y = 1, 1
-direction = {0:(-1,0), 1:(0,1), 2:(1,0), 3:(0,-1)} ## 0:북 1:동 2:남 3:서
+direction = {0:(-1,0), 1:(0,1), 2:(1,0), 3:(0,-1)} # 0:북 1:동 2:남 3:서
 d = 1 
 snake_array = deque([[1,1]]) # 뱀의 몸을 표현할 큐
 board_array[1][1] = 3 # 뱀의 몸은 3으로 표현
