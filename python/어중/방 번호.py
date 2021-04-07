@@ -10,4 +10,4 @@ for i in str(s):
     else:
         card[int(i)] += 1 # 같은 수를 여러번 사용한만큼 세트를 깐다
 
-print(max(card)) 
+print(max(card))  
