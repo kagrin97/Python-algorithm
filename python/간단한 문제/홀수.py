@@ -7,5 +7,8 @@ for i in num:
     if i % 2 != 0:
         odd.append(i)
 
-print(sum(odd))
-print(min(odd))
+if odd:
+    print(sum(odd))
+    print(min(odd))
+else:
+    print(-1)
