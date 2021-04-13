@@ -1,5 +1,6 @@
-from collections import deque
-d = 1
-gear_1 = list(map(int, input().strip()))
-gear_1.rotate(-1)
-print(gear_1)
+for i in range(n):
+    s.append(list(map(int, input().split())))
+    for j in range(len(s[i])):
+        if s[i][j] != 0 and s[i][j] != 6:
+            q.append([i, j, s[i][j]])
+            cctv_cnt += 1

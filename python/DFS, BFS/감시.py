@@ -27,7 +27,7 @@ def dfs(office, cnt):
     for i in direction[cctv]: # 해당 cctv의 모든 경우의 방향을 가져옴
         watch(x, y, tmp, i) 
         dfs(tmp, cnt + 1) # 재귀 함수로 모든 cctv를 검사함
-        tmp = deepcopy(office) # 
+        tmp = deepcopy(office) 
 
 dx = [1, -1, 0, 0]
 dy = [0, 0, 1, -1]
