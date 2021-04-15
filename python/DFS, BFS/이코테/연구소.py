@@ -2,12 +2,9 @@ import sys
 input = sys.stdin.readline
 
 n, m = map(int, input().split())
-data = [] # 초기 입력받을 값 배열
+data = [list(map(int, input().split())) for _ in range(n)] # 초기 입력받을 값 배열
 temp = [[0] * m for _ in range(n)] # 3벽 설치뒤 맵 리스트
 
-for _ in range(n):
-    data.append(list(map(int, input().split())))
-    # 초기 값 2차원 배열
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
 #    상  우  하  좌
