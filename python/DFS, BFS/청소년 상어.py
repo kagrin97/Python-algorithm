@@ -54,7 +54,7 @@ def dfs(sea, now_x, now_y, total):
     total += sea[now_x][now_y][0]
     sea[now_x][now_y][0] = -1 
     move_all_fishes(sea, now_x, now_y) # 물고기 움직이기
-    positions = get_possible_positions(sea, now_x, now_y) 
+    positions = get_possible_positions(sea, now_x, now_y) # 상어 움직이기
 
     if len(positions) == 0: # 먹을수 있는 물고기가 없으면 최대값 갱신후 종료
         result = max(result, total) 
