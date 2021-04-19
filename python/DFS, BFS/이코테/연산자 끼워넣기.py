@@ -9,7 +9,6 @@ add, sub, mul, div = map(int, input().split())
 max_value = -1e9
 min_value = 1e9
 
-
 def dfs(i, now):
     global min_value, max_value, add, sub, mul, div
     if i == n:
