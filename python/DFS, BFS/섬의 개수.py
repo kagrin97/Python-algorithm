@@ -21,7 +21,7 @@ def bfs(x, y):
 while True:
     w, h = map(int, input().split())
     cnt = 0
-    if w == 0 and b == 0:
+    if w == 0 and h == 0:
         break
     board = [list(map(int, input().split())) for _ in range(h)]
     for i in range(h):
