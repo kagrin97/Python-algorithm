@@ -1,47 +1,57 @@
-import sys
 from collections import deque
+import sys
 input = sys.stdin.readline
 dx = [1, -1, 0, 0]
-dy = [0, 0, 1, -1]
+dy = [0, 0, -1, 1]
+
 
 def bfs(x, y):
-    q = deque()
     q.append([x, y])
-    check[x][y] = -1
+    check[x][y] = 1
     while q:
-        x, y = q.popleft()
+        qlen = len(q)
+        while qlen:
+            x, y = q.popleft()
+            for i in range(4):
+                nx = x + dx[i]
+                ny = y + dy[i]
+                if 0 <= nx < R and 0 <= ny < C:
+                    if board[nx][ny] == '.' and check[nx][ny] == 0:
+                        check[nx][ny] = check[x][y] + 1
+                        q.append([nx, ny])
+                    elif board[nx][ny] == 'D':
+                        return check[x][y]
+                        
+            qlen -= 1
+        wave()
+        
+    return "KAKTUS"
+
+def wave():
+    qlen = len(q_wave)
+    while qlen:
+        x, y = q_wave.popleft()
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
-            if 0 <= nx < n and 0 <= ny < n:
-                if board[nx][ny] == board[x][y] and check[nx][ny] == 0:
-                    q.append([nx, ny])
-                    check[nx][ny] = -1
+            if 0 <= nx < R and 0 <= ny < C:
+                if board[nx][ny] == '.':
+                    board[nx][ny] = '*'
+                    q_wave.append([nx, ny])
+        qlen -= 1
 
-n = int(input())
-board = [list(map(str, input())) for _ in range(n)]
-check = [[0] * n for _ in range(n)]
-cnt = 0
+R, C = map(int, input().split())
+board = [list(input().strip()) for _ in range(R)]
+check = [[0] * C for _ in range(R)]
+q, q_wave = deque(), deque()
 
-for i in range(n):
-    for j in range(n):
-        if check[i][j] == 0:
-            bfs(i, j)
-            cnt += 1
-print(cnt, end=' ')
+for i in range(R):
+    for j in range(C):
+        if board[i][j] == 'S':
+            x, y = i, j
+            board[x][y] = '.'
+        elif board[i][j] == '*':
+            q_wave.append([i, j])
 
-for i in range(n):
-    for j in range(n):
-        if board[i][j] == 'R':
-            board[i][j] = "G"
-
-check = [[0] * n for _ in range(n)]
-cnt = 0
-for i in range(n):
-    for j in range(n):
-        if check[i][j] == 0:
-            bfs(i, j)
-            cnt += 1
-print(cnt)
-
-
+wave()
+print(bfs(x, y))
