@@ -1,6 +1,6 @@
 s = list(input())
 stack = []
-c = 0
+result = 0
 
 for i in s:
     if i == ')':
@@ -43,8 +43,8 @@ for i in stack:
         print(0)
         exit()
     else:
-        c += i
-print(c)
+        result += i
+print(result)
 
 
 
