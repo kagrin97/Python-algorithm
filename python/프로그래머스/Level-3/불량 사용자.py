@@ -28,3 +28,4 @@ print(solution(user_id, banned_id))
 '''
 이문제는 19번줄 set이 핵심인데 set으로 문자열을 넣을 경우 ('frodo', 'crodo', 'abc123')와 ('crodo', 'frodo', 'abc123')
 을 같은 문자열로 인식을 한다 즉 answer안에있는 튜플들은 모두 set의 속성을 가지고 있다(넣을때 set으로 넣었기 때문이다)
+'''
