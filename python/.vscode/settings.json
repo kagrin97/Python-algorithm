@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "C:\\Program Files\\Python39\\python.exe",
+    "python.pythonPath": "C:\\python38-64\\python.exe",
     "python.formatting.provider": "autopep8",
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
