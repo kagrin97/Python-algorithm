@@ -1,15 +1,15 @@
 def solution(n, start, end, roads, traps):
     answer = 0
     val = 0
-    while start != end:
+    flag = True
+    while flag:
         for i in range(len(roads)):
             if start in traps:
                 roads[i][0], roads[i][1] = roads[i][1], roads[i][0]
             if roads[i][0] == start:
                 start = roads[i][1]
                 val += roads[i][2]
-                print(12312312)
-            
+                  
     return val
 
 
