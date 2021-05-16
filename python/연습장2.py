@@ -1,31 +1,33 @@
-def solution(t, r):
+def solution(numbers):
     answer = []
-    s = []
-    for i in range(len(t)):
-        s.append([t[i], r[i], i])
-    s = sorted(s, key = lambda x : x[0], x[1], x[2])
-    idx = 0
-    tmp = []
-    
-    while idx != len(t):
-        for i in range(len(s)):
-            if s[i][0] <= idx:
-                tmp.append([s[i]])
+
+    for i in range(len(numbers)):
+      x = numbers[i]
+      tmp_x = numbers[i]
+      two_x = format(x, 'b')
+      while 1:
+        tmp_x += 1
+        two_tmp = format(tmp_x, 'b')
+
+        if len(two_x) != len(two_tmp):
+          while 1:
+            if len(two_x) == len(two_tmp):
+              break
+            elif len(two_x) > len(two_tmp):
+              two_tmp = '0' + two_tmp
+            elif len(two_x) < len(two_tmp):
+              two_x = '0' + two_x
         
-        print(tmp)
+        cnt = 0
+        for k in range(len(two_x)):
+          if two_tmp[k] != two_x[k]:
+            cnt += 1
+        if cnt <= 2:
+          answer.append(tmp_x)
+          break
 
-
-        idx += 1
-
-
-                    
         
-   
-        
+    return answer
 
-    return s
-
-
-t = [0,1,3,0]	
-r = [0,1,2,3]
-print(solution(t, r))
+numbers = [2,7]
+print(solution(numbers))
