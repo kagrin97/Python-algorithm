@@ -1,13 +1,17 @@
-from itertools import permutations
-T = int(input())
+A, B = map(int, input().split())
+q = [(B, 1)]
+result = -1
+while q:
+    x, cnt = q.pop(0)
+    if x == A:
+        result = cnt
+        break
 
-for _ in range(T):
-    N = int(input())
-    tree = list(map(int, input().split()))
-    tree.sort()
+    if x % 2 == 0 and x / 2 >= A:
+        q.append((x / 2, cnt + 1))
+    elif x % 10 == 1 and x / 10 >= A:
+        q.append((x // 10, cnt + 1))
+    else:
+        break
 
-    max_val = 0
-    for i in range(2, N):
-        max_val = max(max_val, abs(tree[i] - tree[i-2]))
-    
-    print(max_val)
+print(result)

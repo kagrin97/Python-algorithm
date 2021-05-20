@@ -3,7 +3,7 @@ input = sys.stdin.readline
 
 N = int(input())
 hanzo = list(map(int, input().split()))
-max_val = 30001
+max_val = 0
 
 for i in range(N):
   cnt = 0
