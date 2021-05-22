@@ -1,17 +1,13 @@
-A, B = map(int, input().split())
-q = [(B, 1)]
-result = -1
-while q:
-    x, cnt = q.pop(0)
-    if x == A:
-        result = cnt
-        break
+N, L = map(int, input().split())
+water = list(map(int, input().split()))
+water.sort()
+cnt = 0
+for i in range(N):
+    tape = [i for i in range(water[i], water[i]+L)]
 
-    if x % 2 == 0 and x / 2 >= A:
-        q.append((x / 2, cnt + 1))
-    elif x % 10 == 1 and x / 10 >= A:
-        q.append((x // 10, cnt + 1))
-    else:
-        break
+    for t in tape:
+        if t in water:
+            water.remove(t)
+    cnt += 1
 
-print(result)
+print(cnt)
