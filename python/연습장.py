@@ -1,13 +1,10 @@
-N, L = map(int, input().split())
-water = list(map(int, input().split()))
-water.sort()
-cnt = 0
-for i in range(N):
-    tape = [i for i in range(water[i], water[i]+L)]
+N = int(input())
+seat = input()
 
-    for t in tape:
-        if t in water:
-            water.remove(t)
-    cnt += 1
+cnt = seat.count('LL')
 
-print(cnt)
+if cnt <= 1:
+    print(len(seat))
+else:
+    print(len(seat) - cnt + 1)
+
