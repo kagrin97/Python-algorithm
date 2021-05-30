@@ -1,17 +1,9 @@
 import sys
-input = sys.stdin.readline
-
-N = int(input())
-hanzo = list(map(int, input().split()))
-max_val = 30001
-
-for i in range(N):
-  cnt = 0
-  for j in range(i+1, N):
-    if hanzo[i] > hanzo[j]:
-      cnt += 1
-    else:
-      break
-  max_val = max(max_val, cnt)
-
-print(max_val)
+n, c = map(int, sys.stdin.readline().rstrip("\n").split())
+m = int(sys.stdin.readline().rstrip("\n"))
+nums = []
+temps = [c]*(n)
+for _ in range(m):
+    nums.append(list(map(int, sys.stdin.readline().rstrip("\n").split())))
+nums = sorted(nums, key=lambda x:x[1])
+print(temps)
