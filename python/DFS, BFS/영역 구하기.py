@@ -6,7 +6,6 @@ board = [[0] * N for _ in range(M)]
 dx = [1, -1, 0, 0]
 dy = [0, 0, 1, -1]
 
-
 def bfs(s1, s2):
   de = deque()
   de.append([s1, s2])
@@ -38,6 +37,7 @@ for i in range(M):
   for j in range(N):
     if board[i][j] == 0:
       bfs(i, j)
+      
 print(len(location))
 location.sort()
 for i in location:
