@@ -44,7 +44,7 @@ def solution(n, plans, clients):
     return answer
 
 n = 5
-plans =
-clients =
+plans = ["100 3 1", "500 4", "2000 5"]
+clients = ["300 3 5", "1500 1","100 1 3","50 1 2"]
 
 print(solution(n, plans, clients))
