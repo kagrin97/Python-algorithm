@@ -1,18 +1,35 @@
-def solution(n, left, right):
-    answer = []
-    for i in range(left, right + 1):
-        a = i // n  # 몫
-        b = i % n  # 나머지
+import math
 
-        if a < b:
-            answer.append(b + 1)
-        else:
-            answer.append(a + 1)
+def get_fee(minutes, fees):
+    return fees[1] + math.ceil(max(0, (minutes - fees[0])) / fees[2]) * fees[3]
 
-    return answer
+def solution(fees, records):
+    parking = dict()
+    stack = dict()
 
-n = 4
-left = 7
-right = 14
+    for record in records:
+        time, car, cmd = record.split()
+        hour, minute = time.split(":")
+        minutes = int(hour) * 60 + int(minute)
 
-print(solution(n, left, right))
+        if cmd == 'IN':
+            parking[car] = minutes
+        elif cmd == 'OUT':
+            try:
+                stack[car] += minutes - parking[car]
+            except:
+                stack[car] = minutes - parking[car]
+            del parking[car]
+
+    for car, minute in parking.items():
+        try:
+            stack[car] += 23 * 60 + 59 - minute
+        except:
+            stack[car] = 23 * 60 + 59 - minute
+
+    return [get_fee(time, fees) for car, time in sorted(list(stack.items()), key=lambda x: x[0])]
+
+fees = [180, 5000, 10, 600]
+records = ["05:34 5961 IN", "06:00 0000 IN", "06:34 0000 OUT", "07:59 5961 OUT", "07:59 0148 IN", "18:59 0000 IN", "19:09 0148 OUT", "22:59 5961 IN", "23:00 5961 OUT"]
+
+print(solution(fees, records))
