@@ -1,3 +1,2 @@
-N, L, R, X = map(int, input().split())
-quiz = list(map(int, input().split()))
-
+for i in range(1,2):
+    print(i)
