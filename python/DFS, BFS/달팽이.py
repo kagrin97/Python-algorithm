@@ -1,41 +1,47 @@
-from collections import deque
+import sys
+input = sys.stdin.readline
 n = int(input())
-target = int(input())
-board_num = [i for i in range(1, n*n+1)] # 1~n*n 만큼 수가들어간 리스트
-board = [[0 for _ in range(n)] for _ in range(n)]
-dx = [1, -1, 0, 0]
-dy = [0, 0, 1, -1]
-q = deque()
-q.append([0, 0, 0]) # x, y, 방향
-board[0][0] = board_num.pop() # 초기값 넣음
+num = int(input())
+dx, dy = [1, 0, -1, 0], [0, 1, 0, -1] # 밑 오른 위 왼쪽
+cur_num = n * n                 # 현재값
+x, y = 0, 0
+direction = 0                   # 초기 방향 
+find_num = [1,1]                # 맨처음 숫자를 찾을수도 있으니 꼭 넣어줘야함 
 
-while board_num:
-    x, y, d = q.popleft()
-    nx = x + dx[d]
-    ny = y + dy[d]
-    if 0 <= nx < n and 0 <= ny < n and board[nx][ny] == 0: # 범위 안이고 한번도 안가본 곳이면
-        board[nx][ny] = board_num.pop()
-        q.append([nx, ny, d])
-    else: # 범위 밖을 벗어 나기 때문에 방향을 바꿔준다
-        if d == 0: 
-            q.append([x, y, 2])
-        elif d == 1:
-            q.append([x, y, 3])
-        elif d == 2:
-            q.append([x, y, 1])
-        elif d == 3:
-            q.append([x, y, 0])
+board = [[0] * n for _ in range(n)]     # 실제 값들을 넣을 2차원배열
+visited = [[False] * n for _ in range(n)]   # 방문 여부
 
+board[0][0] = cur_num           # 첫번째 값을 넣어줌
+visited[0][0] = True            # 방문처리
 
-for i in range(n):
-    for j in range(n):
-        if board[i][j] == target:
-            target_a, target_b = i+1, j+1 # 타겟 넘버를 찾으면 따로 저장함
-        print(board[i][j], end=" ")
-    print()
-print(target_a, target_b)
+while 1:
+    nx = x + dx[direction]
+    ny = y + dy[direction]
 
-'''
-이문제는 처음에 출력을 리스트 통쨰로 print(board)를 하는 바람에 틀렸지만
-알고보니 하나씩 출력하는 것이었다(나의 착각)
-'''
+    if 0 <= nx < n and 0 <= ny < n:
+        if visited[nx][ny] == False:    # 방문하지 않았으면
+            cur_num -= 1
+            board[nx][ny] = cur_num
+            if cur_num == num:          # 찾는 숫자일 경우 위치를 넣어줌
+                find_num = [nx+1,ny+1]
+            visited[nx][ny] = True      # 방문처리
+            x, y = nx, ny
+        else:
+            direction += 1      # 이미 방문한 곳이면 방향을 바꿈
+            if direction >= 4:
+                direction = 0
+    else:
+        direction += 1          # 배열을 벗어났으면 방향을 바꿈
+        if direction >= 4:
+            direction = 0
+
+    if cur_num == 1:        # 1까지 실행했으면 종료
+        break
+
+for i in board:
+    print(*i)
+
+print(*find_num)
+
+# 이 문제는 맨처음 초기값을 찾는 예제를 생각을 못하고 돌려서 런터임 네임에러가 나타났다
+# 9 번쨰줄
