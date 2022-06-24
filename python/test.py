@@ -1,48 +1,43 @@
 import sys
 input = sys.stdin.readline
 
-dx = [-1, 1, 0, 0]
-dy = [0, 0, -1, 1]
+N, M = map(int, input().split())
+board = [list(map(int, input().split())) for _ in range(N)]
+moves = [list(map(int, input().split())) for _ in range(M)]
 
-n = int(input())
-board = [[0]*n for _ in range(n)]
-## 한 번에 정보를 받음
-students = [list(map(int, input().split())) for _ in range(n**2)]
+dx8 = ("tmp", 0, -1, -1, -1, 0, 1, 1, 1)    # ←, ↖, ↑, ↗, →, ↘, ↓, ↙
+dy8 = ("tmp", -1, -1, 0, 1, 1, 1, 0, -1)
 
-## 학생 수 만큼 for문을 돌며 자리에 앉혀 줌.
-for order in range(n**2):
-    student = students[order]
-    ## 여기다가 가능한 자리를 다 담아서 정렬 후 앉힘
-    tmp = []
-    for i in range(n):
-        for j in range(n):
-            if board[i][j] == 0:
-                like = 0
-                blank = 0
-                for k in range(4):
-                    nx, ny = i + dx[k], j + dy[k]
-                    if 0 <= nx < n and 0 <= ny < n:
-                        if board[nx][ny] in student[1:]:
-                            like += 1
-                        if board[nx][ny] == 0:
-                            blank += 1
-                tmp.append([like, blank, i, j])
+dy4 = (-1, -1, 1, 1)
+dx4 = (-1, 1, -1, 1)
 
-    tmp.sort(key= lambda x:(-x[0], -x[1], x[2], x[3]))
-    board[tmp[0][2]][tmp[0][3]] = student[0]
+clouds = [(N - 1, 0), (N - 1, 1), (N - 2, 0), (N - 2, 1)]  # 구름 좌표
+for d, s in moves:
+    moved_clouds = []
+    for x, y in clouds:
+        nx = (x + dx8[d] * s) % N
+        ny = (y + dy8[d] * s) % N
+        board[nx][ny] += 1
+        moved_clouds.append((nx, ny))
 
-result = 0
-## 점수를 매길 때는 학생 순서대로 점수 주기 위해 정렬함 
-students.sort()
+    for x, y in moved_clouds:
+        cnt = 0
+        for d in range(4):
+            nx = x + dx4[d]
+            ny = y + dy4[d]
+            if 0 <= nx < N and 0 <= ny < N and board[nx][ny] > 0:
+                cnt += 1
+        board[x][y] += cnt
 
-for i in range(n):
-    for j in range(n):
-        ans = 0
-        for k in range(4):
-            nx, ny = i + dx[k], j + dy[k]
-            if 0 <= nx < n and 0 <= ny < n:
-                if board[nx][ny] in students[board[i][j]-1]:
-                    ans += 1
-        if ans != 0:
-            result += 10 ** (ans-1)
-print(result)
+    new_clouds = []
+    for x in range(N):
+        for y in range(N):
+            if (x, y) not in moved_clouds and board[x][y] > 1:
+                board[x][y] -= 2
+                new_clouds.append((x, y))
+    clouds = new_clouds
+
+water = 0
+for i in board:
+    water += sum(i)
+print(water)
